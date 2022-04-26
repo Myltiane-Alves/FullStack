@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { compileStringAsync } from "sass";
 
 type FooterButton = {
     href?: string;
@@ -13,9 +14,20 @@ type FooterProps = {
     buttons?: FooterButton[];
 };
 
-const Footer = ({
-    buttons,
-}: FooterProps) => {
+export const ButtonBack = {
+    value: 'Voltar',
+    onClick: toBack,
+    type: 'button',
+
+} as FooterButton;
+
+export const ButtonContinue = {
+    value: 'Continuar',
+    type: 'submit',
+} as FooterButton;
+
+
+const Footer = ({ buttons = [ButtonBack, ButtonContinue]}: FooterProps) => {
 
     return (
         <footer className="fixed">
