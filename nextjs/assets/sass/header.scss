@@ -88,6 +88,8 @@
           color: var(--dark-0);
           text-decoration: none;
           font-size: 16px;
+          display: flex;
+          flex-direction: column;
           small {
             color: var(--gray-2);
             font-size: 12px;

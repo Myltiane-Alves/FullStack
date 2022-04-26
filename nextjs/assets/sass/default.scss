@@ -12,6 +12,10 @@ body, div, article, aside, footer, header, main, nav, section, ul, ol, li, butto
 
 body {
     margin: 0;
+}
+
+#__next {
+    margin: 0;
     flex-direction: column;
     background-color: var(--bg-color);
     > main {
