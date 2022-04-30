@@ -1,7 +1,9 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import {withIronSessionApiRoute} from 'iron-session/next'
 import { sessionOptions } from "../../../utils/session";
-import { parse } from "date-fns";
+import { parse, format } from "date-fns";
+import { ScheduleSession } from "../../../types/ScheduleSession";
+
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     
@@ -9,7 +11,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         const schduleAt = parse(req.body.scheduleAt, 'dd/MM/yyyy', new Date());
         
         const schedule = {
-            scheduleAt: parse(req.body.schduleAt,   'yyyy-MM-dd', new Date()),
+            scheduleAt: format(schduleAt,   'yyyy-MM-dd'),
         } as ScheduleSession;
     
         req.session.schedule = schedule;
