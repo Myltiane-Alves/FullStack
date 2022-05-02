@@ -5,7 +5,7 @@ import Page from '../components/Page';
 import Footer from '../components/Page/Footer';
 import { format } from 'date-fns';
 import axios from 'axios';
-import Router, { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import { NextPage } from 'next';
 
 const ComponentPage: NextPage = () => {
@@ -25,7 +25,7 @@ const ComponentPage: NextPage = () => {
         .post('/api/schedules/new', {
           scheduleAt: format(scheduleAt, 'yyyy-MM-dd'),
         })
-        .then(({ data }) => Router.push('/schedules-time-options')) 
+        .then(({ data }) => router.push('/schedules-time-options')) 
         .catch((error) => {
           console.error(error.message);
         }); 

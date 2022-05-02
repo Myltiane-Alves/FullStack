@@ -1,8 +1,30 @@
+import { withIronSessionApiRoute } from "iron-session/next/dist";
 import { NextApiRequest, NextApiResponse } from "next";
+import { ScheduleSession } from "../../../types/ScheduleSession";
+import { sessionOptions } from "../../../utils/session";
 
-export default function (req: NextApiRequest, res: NextApiResponse)  {
-    req.session;
+export default withIronSessionApiRoute(async function (req: NextApiRequest, res: NextApiResponse)  {
+   
+   try {
 
-    res.status(200).json({ });
-};
+    const schedule = {
+        ...(req.session.schedule ?? {}),
+        timeOptionId: req.body.timeOptionId,
+    } as ScheduleSession;
+
+    req.session.schedule = schedule;
+
+    await req.session.save();
+
+    res.status(200).json(req.session.schedule);
+
+   } catch(e: any) {
+
+    res.status(200).json({
+        message: e.message,
+    });
+
+   }
+
+}, sessionOptions);
 
